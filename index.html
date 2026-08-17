@@ -1,540 +1,109 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jordan R. Kelly — Principal Engineer</title>
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jordan R. Kelly</title>
+<meta name="description" content="Technical Lead &middot; Full Stack, Systems and Architecture">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg-primary: #ffffff;
-    --bg-secondary: #f3f2ee;
-    --bg-card: #ffffff;
-    --text-primary: #1a1a18;
-    --text-secondary: #5f5e5a;
-    --border: #d3d1c7;
-    --accent: #1d9e75;
-    --accent-bg: #e1f5ee;
-    --accent-border: #9fe1cb;
-    --accent-text: #0f6e56;
-    --info-bg: #e6f1fb;
-    --info-border: #b5d4f4;
-    --info-text: #185fa5;
-    --chip-bg: #f3f2ee;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg-primary: #1c1c1a;
-      --bg-secondary: #242422;
-      --bg-card: #242422;
-      --text-primary: #f0efe9;
-      --text-secondary: #9e9d97;
-      --border: #3a3a36;
-      --accent: #1d9e75;
-      --accent-bg: #0a3326;
-      --accent-border: #0f5e40;
-      --accent-text: #5dcaa5;
-      --info-bg: #0c2340;
-      --info-border: #1a4a7a;
-      --info-text: #85b7eb;
-      --chip-bg: #2a2a28;
-    }
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg-secondary);
-    color: var(--text-primary);
-    min-height: 100vh;
-    padding: 2rem;
-  }
-
-  .rw {
-    background: var(--bg-primary);
-    max-width: 860px;
-    margin: 0 auto;
-    border: 0.5px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-  }
-
-  .hd {
-    padding: 2.5rem 2.5rem 2rem;
-    border-bottom: 0.5px solid var(--border);
-    position: relative;
-  }
-
-  .hd-bar {
-    position: absolute;
-    top: 0; left: 0;
-    width: 4px; height: 100%;
-    background: var(--accent);
-  }
-
-  .name {
-    font-family: 'DM Serif Display', serif;
-    font-size: 2.4rem;
-    line-height: 1.1;
-    letter-spacing: -0.5px;
-    color: var(--text-primary);
-  }
-
-  .ttl {
-    font-size: .85rem;
-    font-weight: 300;
-    letter-spacing: .14em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-top: .4rem;
-  }
-
-  .cr {
-    display: flex;
-    gap: 1.5rem;
-    margin-top: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .ci {
-    font-size: .8rem;
-    color: var(--text-secondary);
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-
-  .bd {
-    display: grid;
-    grid-template-columns: 1fr 270px;
-  }
-
-  .mn {
-    padding: 2rem 2.5rem;
-    border-right: 0.5px solid var(--border);
-  }
-
-  .sb {
-    padding: 2rem 1.75rem;
-    background: var(--bg-secondary);
-  }
-
-  .sec { margin-bottom: 2rem; }
-
-  .sl {
-    font-size: .68rem;
-    font-weight: 500;
-    letter-spacing: .14em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .sl::after {
-    content: '';
-    flex: 1;
-    height: 0.5px;
-    background: var(--border);
-  }
-
-  .summary {
-    font-size: .88rem;
-    line-height: 1.85;
-    color: var(--text-secondary);
-    border-left: 3px solid var(--accent);
-    padding-left: 1rem;
-  }
-
-  .job { margin-bottom: 1.75rem; }
-
-  .jh {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    flex-wrap: wrap;
-    gap: 4px;
-    margin-bottom: .2rem;
-  }
-
-  .jt { font-size: .95rem; font-weight: 500; color: var(--text-primary); }
-  .jd { font-size: .75rem; color: var(--text-secondary); font-weight: 300; }
-  .jc { font-size: .78rem; color: var(--accent); margin-bottom: .65rem; }
-
-  .job ul { list-style: disc; padding-left: 1.1rem; }
-
-  .job ul li {
-    font-size: .83rem;
-    color: var(--text-secondary);
-    line-height: 1.65;
-    padding: .2rem 0;
-  }
-
-  .job ul li::marker { color: var(--accent); font-size: .7rem; }
-
-  .proj-card {
-    background: var(--bg-card);
-    border: 0.5px solid var(--border);
-    border-radius: 10px;
-    padding: 1rem 1.2rem;
-    margin-bottom: .85rem;
-  }
-
-  .pn {
-    font-size: .9rem;
-    font-weight: 500;
-    color: var(--text-primary);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: .2rem;
-  }
-
-  .pbadge {
-    font-size: .65rem;
-    font-weight: 500;
-    padding: 2px 8px;
-    border-radius: 20px;
-    background: var(--accent-bg);
-    color: var(--accent-text);
-    border: 0.5px solid var(--accent-border);
-  }
-
-  .pbadge2 {
-    font-size: .65rem;
-    font-weight: 500;
-    padding: 2px 8px;
-    border-radius: 20px;
-    background: var(--info-bg);
-    color: var(--info-text);
-    border: 0.5px solid var(--info-border);
-  }
-
-  .ps { font-size: .75rem; color: var(--accent); margin-bottom: .5rem; }
-
-  .pd {
-    font-size: .81rem;
-    color: var(--text-secondary);
-    line-height: 1.65;
-  }
-
-  .pd code {
-    font-size: .76rem;
-    background: var(--chip-bg);
-    padding: 1px 4px;
-    border-radius: 3px;
-    color: var(--text-secondary);
-  }
-
-  .pchips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px;
-    margin-top: .6rem;
-  }
-
-  .pc {
-    font-size: .68rem;
-    padding: 2px 8px;
-    border-radius: 20px;
-    border: 0.5px solid var(--border);
-    color: var(--text-secondary);
-    background: var(--chip-bg);
-  }
-
-  .prior ul { list-style: disc; padding-left: 1.1rem; }
-
-  .prior ul li {
-    font-size: .78rem;
-    color: var(--text-secondary);
-    line-height: 1.75;
-    padding: .1rem 0;
-  }
-
-  .prior ul li::marker { color: var(--accent); font-size: .7rem; }
-  .prior strong { color: var(--text-primary); font-weight: 500; }
-
-  .sbl {
-    font-size: .68rem;
-    font-weight: 500;
-    letter-spacing: .14em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: .75rem;
-  }
-
-  .sb-s { margin-bottom: 1.75rem; }
-
-  .chips { display: flex; flex-wrap: wrap; gap: 5px; }
-
-  .chip {
-    font-size: .72rem;
-    padding: 3px 9px;
-    border-radius: 20px;
-    border: 0.5px solid var(--border);
-    color: var(--text-secondary);
-    background: var(--bg-primary);
-  }
-
-  .chip.p {
-    background: var(--accent-bg);
-    border-color: var(--accent-border);
-    color: var(--accent-text);
-    font-weight: 500;
-  }
-
-  .chip.ai {
-    background: var(--info-bg);
-    border-color: var(--info-border);
-    color: var(--info-text);
-    font-weight: 500;
-  }
-
-  .str-ul { list-style: disc; padding-left: 1.1rem; }
-
-  .str-ul li {
-    font-size: .78rem;
-    color: var(--text-secondary);
-    line-height: 1.5;
-    padding: .18rem 0;
-  }
-
-  .str-ul li::marker { color: var(--accent); font-size: .7rem; }
-
-  .hd-actions {
-    position: absolute;
-    top: 2.5rem;
-    right: 2.5rem;
-    display: flex;
-    gap: 10px;
-  }
-
-  @media (max-width: 640px) {
-    .hd-actions {
-      position: static;
-      margin-bottom: 1rem;
-    }
-  }
-
-  .btn {
-    font-family: 'DM Sans', sans-serif;
-    font-size: .8rem;
-    padding: 7px 18px;
-    border-radius: 6px;
-    border: 0.5px solid var(--accent);
-    color: var(--accent);
-    background: transparent;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    transition: background .15s;
-    text-decoration: none;
-  }
-
-  .btn:hover { background: var(--accent-bg); }
-
-  @media print {
-    body { background: white; padding: 0; }
-    .rw { border: none; border-radius: 0; max-width: 100%; }
-    .hd-actions { display: none; }
-    .bd { grid-template-columns: 1fr 240px; }
-    .hd, .mn, .sb, .sec, .job { page-break-inside: avoid; }
-  }
-</style>
-</head>
-<body>
-
-<div class="rw">
-  <div class="hd">
-    <div class="hd-bar"></div>
-    <div class="name">Jordan R. Kelly</div>
-    <div class="ttl">Principal Engineer &middot; Full Stack &middot; Systems &amp; Architecture</div>
-    <div class="cr">
-      <span class="ci">Central Pennsylvania</span>
-      <span class="ci">Contact via GitHub</span>
-      <span class="ci">jordunkelly.github.io</span>
-    </div>
-  </div>
-
-  <div class="bd">
-    <div class="mn">
-
-      <div class="sec">
-        <div class="sl">Profile</div>
-        <p class="summary">Full stack software engineer with 10+ years designing, owning, and shipping production systems — from mission-critical DoD infrastructure to independently built desktop applications. Proven ability to enter an unfamiliar codebase or architecture, understand it deeply, and improve it. Learns new stacks by building with them. Currently expanding into modern JavaScript ecosystems, React, and LLM API integration outside of enterprise work — a deliberate push into the technologies that define what comes next.</p>
-      </div>
-
-      <div class="sec">
-        <div class="sl">Experience</div>
-
-        <div class="job">
-          <div class="jh">
-            <span class="jt">Principal Engineer / Technical Lead</span>
-            <span class="jd">2021&ndash;Present</span>
-          </div>
-          <div class="jc">JMA Resources &middot; NAVSUP BSC &middot; ESRS Program &middot; DoD Contractor</div>
-          <ul>
-            <li>Grew from contributor to sole architect and principal engineer on a mission-critical Navy platform — making system-wide decisions, setting engineering standards, and interfacing directly with government stakeholders</li>
-            <li>Inherited a codebase with no architectural standards — diagnosed systemic issues across the full stack, refactored from the ground up, and delivered a stable platform where prior releases had repeatedly failed</li>
-            <li>Re-architected the data model using optimized PL/SQL packages, a clean indexing strategy, and a JSON-driven architecture that decoupled UI from database structure — eliminating years of accumulated technical debt in a single release cycle</li>
-            <li>Pioneered the organization's first automated PDF read/write pipeline using Apache PDFBox and Java — designed the system, owned the rollout, and it became the org-wide standard across all applications</li>
-            <li>Designed and owns a management reporting system backed by materialized views and weighted throughput metrics, used by Navy leadership for operational visibility across all engineering groups</li>
-            <li>Established engineering standards from scratch: separation of concerns, reusable component patterns, AJAX lifecycle discipline, and consistent code quality across a previously undisciplined codebase</li>
-            <li>Primary technical interface with government stakeholders through UAT, live deployments, and production escalations — resolving issues in real time with command leadership present</li>
-          </ul>
-        </div>
-
-        <div class="job">
-          <div class="jh">
-            <span class="jt">Application Developer</span>
-            <span class="jd">2016&ndash;2020</span>
-          </div>
-          <div class="jc">Pennsylvania Chamber of Business and Industry</div>
-          <ul>
-            <li>Introduced Git-based version control and built internal PHP, MySQL, and jQuery frameworks supporting dynamic org-wide application builds</li>
-          </ul>
-        </div>
-
-        <div class="job">
-          <div class="jh">
-            <span class="jt">Front-End Web Development Instructor</span>
-            <span class="jd">2018&ndash;2021</span>
-          </div>
-          <div class="jc">College Consortium Initiative</div>
-          <ul>
-            <li>Led applied curriculum in HTML5, CSS, and JavaScript through project-based instruction</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="sec">
-        <div class="sl">Independent Projects</div>
-
-        <div class="proj-card">
-          <div class="pn">Hoard <span class="pbadge">Shipping</span></div>
-          <div class="ps">Personal finance desktop app &middot; Electron &middot; Next.js 15 &middot; TypeScript &middot; Prisma &middot; SQLite &middot; Windows native</div>
-          <div class="pd">Designed and built a fully offline native Windows desktop application from scratch, chosen specifically to learn Electron, Next.js 15, TypeScript, and Prisma by building something real. Ingests live bank and credit card data via Gmail IMAP over TLS port 993, runs a background cron sync engine, and renders a cash flow forecast timeline, spend dashboard, grocery tracker, and monthly scorecard — all on a local SQLite database with zero cloud dependency. Engineered the full distribution pipeline: a one-click <code>.exe</code> installer via Inno Setup, auto-provisioning Node.js, Git, and VS Code through winget, a first-run setup wizard, and Prisma schema migration on install. Navigated the full Windows packaging gauntlet including PS1, ps2exe, 7Zip SFX, and electron-builder before shipping a clean distributable.</div>
-          <div class="pchips">
-            <span class="pc">Electron</span><span class="pc">Next.js 15</span><span class="pc">TypeScript</span><span class="pc">React</span><span class="pc">Prisma</span><span class="pc">SQLite</span><span class="pc">IMAP TLS</span><span class="pc">Inno Setup</span><span class="pc">Node.js</span><span class="pc">winget</span>
-          </div>
-        </div>
-
-        <div class="proj-card">
-          <div class="pn">LLM API Tooling <span class="pbadge2">Active</span></div>
-          <div class="ps">Claude and OpenAI APIs &middot; Prompt chaining &middot; Structured outputs</div>
-          <div class="pd">Building with Claude and OpenAI APIs to understand where LLM capabilities practically integrate into product development. Exploring prompt chaining, structured JSON outputs, and embedding AI into real application workflows — driven by a direct interest in how AI changes the surface area of what a single engineer can scope and ship.</div>
-          <div class="pchips">
-            <span class="pc">Claude API</span><span class="pc">OpenAI API</span><span class="pc">Prompt chaining</span><span class="pc">Structured outputs</span><span class="pc">JavaScript</span><span class="pc">REST APIs</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="sec">
-        <div class="sl">Prior Roles</div>
-        <div class="prior">
-          <ul>
-            <li><strong>Programmer Analyst</strong> at Pikeville Medical Center &middot; Java and Perl applications for hospital operations</li>
-            <li><strong>Technical Specialist</strong> at Cloud 5 Solutions &middot; Public safety web application development</li>
-            <li><strong>Owner</strong> at J.R.K. IT Services &middot; Full stack development and IT consulting for small businesses</li>
-          </ul>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="sb">
-
-      <div class="sb-s">
-        <div class="sbl">Modern and Expanding</div>
-        <div class="chips">
-          <span class="chip ai">React</span>
-          <span class="chip ai">TypeScript</span>
-          <span class="chip ai">Next.js 15</span>
-          <span class="chip ai">Electron</span>
-          <span class="chip ai">Prisma</span>
-          <span class="chip ai">Node.js</span>
-          <span class="chip ai">Claude API</span>
-          <span class="chip ai">OpenAI API</span>
-          <span class="chip">SQLite</span>
-          <span class="chip">Vite</span>
-          <span class="chip">REST APIs</span>
-          <span class="chip">JSON</span>
-        </div>
-      </div>
-
-      <div class="sb-s">
-        <div class="sbl">Production and Enterprise</div>
-        <div class="chips">
-          <span class="chip p">Oracle PL/SQL</span>
-          <span class="chip p">Java</span>
-          <span class="chip p">JavaScript</span>
-          <span class="chip p">SQL / T-SQL</span>
-          <span class="chip p">Bootstrap 5+</span>
-          <span class="chip">jQuery</span>
-          <span class="chip">PHP</span>
-          <span class="chip">Perl</span>
-          <span class="chip">HTML5 / CSS</span>
-          <span class="chip">AJAX</span>
-          <span class="chip">DataTables</span>
-          <span class="chip">Highcharts</span>
-          <span class="chip">Git</span>
-          <span class="chip">Azure DevOps</span>
-          <span class="chip">Oracle 12c&#x2013;23c</span>
-        </div>
-      </div>
-
-      <div class="sb-s">
-        <div class="sbl">Engineering Strengths</div>
-        <ul class="str-ul">
-          <li>Rapid stack adoption — learns by building</li>
-          <li>Full stack architecture and system design</li>
-          <li>End-to-end delivery, concept to distribution</li>
-          <li>Legacy system diagnosis and modernization</li>
-          <li>Database architecture and performance tuning</li>
-          <li>LLM and AI API integration</li>
-          <li>Engineering standards and code review</li>
-          <li>High-stakes stakeholder delivery</li>
-          <li>DoD and compliance environments</li>
-        </ul>
-      </div>
-
-      <div class="sb-s">
-        <div class="sbl">Clearance and Certs</div>
-        <div style="font-size:.78rem;color:var(--text-secondary);line-height:1.9">
-          DoD security clearance<br>
-          Security+ &middot; CompTIA / DoD<br>
-          NAVSUP BSC contractor &middot; 2020&#x2013;present
-        </div>
-      </div>
-
-      <div class="sb-s">
-        <div class="sbl">Education</div>
-        <div style="font-size:.85rem;font-weight:500;color:var(--text-primary)">A.S. Web Development</div>
-        <div style="font-size:.75rem;color:var(--text-secondary);margin-top:2px">Harrisburg Area Community College</div>
-      </div>
-
-      <div class="sb-s">
-        <div class="sbl">Currently Exploring</div>
-        <ul class="str-ul">
-          <li>React component architecture</li>
-          <li>LLM structured output patterns</li>
-          <li>Personal server deployments</li>
-          <li>Modern JS tooling via Vite</li>
-          <li>Desktop app distribution on Windows</li>
-        </ul>
-      </div>
-
-    </div>
-  </div>
-
+:root{--bg:#0f1211;--bg2:#171b1a;--tx:#f2f4f3;--tx2:#b8c0be;--bd:#2a302e;--ac:#1d9e75;--r:10px}
+@media(prefers-color-scheme:light){:root{--bg:#fbfbfa;--bg2:#f5f6f5;--tx:#141414;--tx2:#2b3130;--bd:#dfe3e2;--ac:#157a59}}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+     background:var(--bg);color:var(--tx);line-height:1.5;padding:2rem 1rem}
+.rw{max-width:820px;margin:0 auto;border:1px solid var(--bd);border-radius:var(--r);overflow:hidden;background:var(--bg)}
+.hd{padding:1.6rem 1.8rem 1.3rem;border-bottom:1px solid var(--bd);border-left:4px solid var(--ac)}
+.name{font-size:2rem;font-weight:600;letter-spacing:-.5px;line-height:1.1}
+.ttl{font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ac);margin-top:.35rem}
+.cr{margin-top:.7rem;font-size:.8rem;color:var(--tx2)}
+.cr a{color:var(--ac);text-decoration:none}.cr a:hover{text-decoration:underline}
+.mn{padding:1.4rem 1.8rem 1.8rem}
+.sec{margin-bottom:1.5rem}
+.sl{font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ac);
+    margin-bottom:.6rem;display:flex;align-items:center;gap:10px}
+.sl::after{content:'';flex:1;height:1px;background:var(--bd)}
+.summary{font-size:.92rem;color:var(--tx2);border-left:3px solid var(--ac);padding-left:1rem;margin-bottom:.7rem}
+.job{margin-bottom:1.1rem}
+.jh{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px}
+.jt{font-size:1rem;font-weight:600}
+.jd{font-size:.78rem;color:var(--tx2)}
+.jc{font-size:.82rem;color:var(--ac);margin-bottom:.45rem}
+ul{list-style:none}
+li{font-size:.87rem;color:var(--tx2);padding:.12rem 0 .12rem 1.1rem;text-indent:-1.1rem;line-height:1.45}
+li::before{content:'\2022\00a0\00a0';color:var(--ac)}
+.kv{font-size:.87rem;color:var(--tx2);margin-bottom:.3rem}
+.kv strong{color:var(--tx);font-weight:600}
+.proj{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r);padding:1rem 1.2rem;margin-bottom:.8rem}
+.pn{font-size:1rem;font-weight:600;margin-bottom:.15rem}
+.ps{font-size:.8rem;color:var(--ac);margin-bottom:.5rem}
+.pd{font-size:.87rem;color:var(--tx2);margin-bottom:.5rem}
+.ft{border-top:1px solid var(--bd);padding:1rem 1.8rem;font-size:.78rem;color:var(--tx2)}
+@media(max-width:600px){body{padding:1rem .6rem}.hd,.mn{padding-left:1.1rem;padding-right:1.1rem}.name{font-size:1.6rem}}
+</style></head><body>
+<div class="rw"><div class="hd">
+<div class="name">Jordan R. Kelly</div>
+<div class="ttl">Technical Lead &middot; Full Stack, Systems and Architecture</div>
+<div class="cr">Central Pennsylvania &nbsp;|&nbsp; <a href="https://github.com/Jordunkelly">github.com/Jordunkelly</a> &nbsp;|&nbsp; contact via GitHub</div>
+</div><div class="mn">
+<div class="sec"><div class="sl">Profile</div>
+<p class="summary">Principal level full stack engineer, eleven years, six as sole technical authority on a mission critical U.S. Navy program serving 1,400 users. Technical lead for four applications and two developers. Owns architecture, data model, front end, test strategy, and the CI/CD release pipeline end to end. Most recent cycle: 71,000 lines across four months, one production defect at release, resolved in minutes. Agile delivery with work items tracked in Azure DevOps Boards.</p>
+<p class="summary">Built Hoard, a commercial grade Electron and Next.js 15 desktop application in React and TypeScript, now in private beta ahead of paid public release. Sole engineer, 1,784 unit tests across 74 files plus 15 packaged smoke tests, code signed, packaged installer.</p>
 </div>
-
-</body>
-</html>
+<div class="sec"><div class="sl">Technical skills</div>
+<div class="kv"><strong>Languages</strong> &middot; Java, JavaScript, TypeScript, Oracle PL/SQL, SQL, T-SQL, Python, PHP, Perl, HTML5, CSS</div>
+<div class="kv"><strong>Platforms and cloud</strong> &middot; Linux, Unix, Windows, Windows Server, Oracle Database 12c through 23c, Oracle APEX, AWS GovCloud</div>
+<div class="kv"><strong>Front end</strong> &middot; React, Next.js 15, Bootstrap 5, Tailwind CSS, jQuery, AJAX, DataTables, Highcharts, Vite</div>
+<div class="kv"><strong>Backend and data</strong> &middot; Node.js, PL/SQL packages, materialized views, indexing strategy, query optimization, REST API design, JSON data contracts, Prisma, SQLite, MySQL</div>
+<div class="kv"><strong>Testing</strong> &middot; Vitest, Playwright, unit testing, end to end and behavioral testing, test automation, regression testing</div>
+<div class="kv"><strong>DevOps</strong> &middot; Agile, Scrum, CI/CD pipelines, Azure DevOps (Boards, Repos, Pipelines), Git, GitHub, release engineering, automated build and release, code signing</div>
+<div class="kv"><strong>AI and LLM</strong> &middot; Claude API, OpenAI API, Grok API, Gemini, prompt chaining, structured JSON outputs, agent driven workflows</div>
+</div>
+<div class="sec"><div class="sl">Experience</div>
+<div class="job"><div class="jh"><span class="jt">Full Stack Developer / Team Lead</span><span class="jd">2020 to present</span></div>
+<div class="jc">DoD contractor, U.S. Navy program</div><ul>
+<li>Technical lead for four production applications inside a 140+ application portfolio serving 400,000+ users. Lead two developers, hold access across 20+ schemas, and provide ad hoc support beyond owned applications.</li>
+<li>Architected and built the program's flagship platform as its sole developer with no design team, after two prior versions had failed, delivering its first stable release. Serving 1,400 users, owned front end through CI/CD.</li>
+<li>Delivered 71,000 lines across a four month release cycle. One production defect at release, resolved in minutes.</li>
+<li>Formally commended in writing by the government mission partner for technical execution, user centric design, and stakeholder communication.</li>
+<li>Convened stakeholders across multiple government organizations to reconstruct a fragmented requirements picture and unblock a production launch stalled by withheld source data.</li>
+<li>Documented a non-adoption risk to headquarters on a mandated feature, from a fresh review of a four year old project. Overruled; the feature has recorded zero usage since launch.</li>
+<li>Rebuilt the data layer on optimized PL/SQL packages, a clean indexing strategy, and a JSON contract decoupling UI from schema. Eliminated a systemic N+1 pattern via pre-aggregating CTEs and materialized views.</li>
+<li>Delivered single page application UX inside a server rendered stack under hard platform constraints: ES5 only on locked down government browsers, libraries self hosted behind approval rather than CDN, and no CSS variables.</li>
+<li>Established the paired render and API architecture now standard across every feature, and authored tens of thousands of lines of hand rolled CSS across four applications.</li>
+<li>Own the CI/CD release pipeline for a live object Oracle deployment model, built per schema to program specification. Application and database SME through the program's full AWS GovCloud migration.</li>
+<li>Built the rollback discipline the organization never standardized: object level snapshots and pre staged backups on every promotion through preprod under a UAT approval gate, compensating for a native rollback that cannot guarantee restoration.</li>
+<li>Designed the authorization model: hierarchical per group access control with manager scoping, plus a dynamic form definition layer enabling customer driven workflow changes without a code release.</li>
+<li>Designed and maintain the reporting layer measuring contractual performance compliance for a signed multi year interagency agreement, on materialized views and weighted throughput math, used for operational visibility across all engineering groups.</li>
+<li>Develop to DoD secure coding standards and STIG guidance, delivering into a system governed by RMF and ATO processes owned on the government side.</li>
+<li>Built the organization's first automated PDF read/write pipeline (Apache PDFBox, Java), adopted as the org wide standard.</li>
+</ul></div>
+<div class="job"><div class="jh"><span class="jt">Front End Web Development Instructor</span><span class="jd"></span></div>
+<div class="jc">2018 to 2021</div><ul>
+<li>Led applied curriculum in HTML5, CSS, and JavaScript through project based instruction, mentoring students through hands on build work.</li>
+</ul></div>
+<div class="job"><div class="jh"><span class="jt">Application Developer</span><span class="jd"></span></div>
+<div class="jc">2016 to 2020</div><ul>
+<li>Introduced Git based version control and built internal PHP, MySQL, and jQuery frameworks supporting dynamic organization wide application builds.</li>
+</ul></div>
+<div class="job"><div class="jh"><span class="jt">Programmer Analyst</span><span class="jd"></span></div>
+<div class="jc">Healthcare sector</div><ul>
+<li>Built and maintained Java and Perl applications supporting hospital operations on a custom stack hosted across Linux servers, working daily in a Unix and Linux environment.</li>
+</ul></div>
+<div class="job"><div class="jh"><span class="jt">Technical Specialist &middot; Owner, independent consultancy</span><span class="jd"></span></div>
+<div class="jc"></div><ul>
+<li>Public safety web application development. Full stack development and IT consulting for small business clients.</li>
+</ul></div>
+</div>
+<div class="sec"><div class="sl">Independent projects</div>
+<div class="proj"><div class="pn">Hoard v1.0.0 &middot; personal finance desktop application (private beta)</div>
+<div class="ps">Electron &middot; Next.js 15 &middot; TypeScript &middot; React &middot; Tailwind &middot; Prisma &middot; SQLite &middot; Vitest &middot; Playwright</div>
+<div class="pd">Sole engineer, concept through v1.0.0 and private beta, built for commercial release with the paid public launch in preparation. Reads the transaction alerts a bank already emails you rather than asking for bank credentials or a Plaid token, and turns them into live cash flow forecasting, automatic bill detection, and spending analytics.</div>
+<div class="pd">No server, no telemetry, no account. That one rule decided the storage layer, the auth model, the update channel, and the licensing. There is nothing to breach because there is nothing out there. Mailbox credentials are sealed against the OS keychain, so a copied database file is useless on anybody else's machine.</div>
+<div class="pd">1,784 unit tests across 74 files plus 15 packaged smoke tests, wired into the build and distribution pipeline: one click installer, code signing, dependency provisioning, and schema migration on install.</div>
+</div>
+<div class="proj"><div class="pn">LLM and Agent Tooling</div>
+<div class="ps">Claude API &middot; Grok API &middot; OpenAI API &middot; Python</div>
+<div class="pd">Prompt chaining, structured JSON output contracts, and agent driven workflows. Aimed at release engineering, data migrations, and automated test generation rather than demos.</div>
+</div>
+</div>
+<div class="sec"><div class="sl">Education</div><div class="kv"><strong>A.S. Web Development</strong>, supplemented by eleven years of professional software engineering experience.</div></div>
+</div><div class="ft">Contact details, clearance status, and employer specifics are deliberately not published here. Available on request through a direct application.</div></div></body></html>
