@@ -71,23 +71,25 @@ li::before{content:'\2022\00a0\00a0';color:var(--ac)}
   @page{margin:0}
   body{padding:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .rw{max-width:100%;border:none;border-radius:0}
-  .hd{padding:.3in .42in .14in}
-  .mn{padding:.14in .42in .24in}
-  .name{font-size:1.45rem}
-  .sec{margin-bottom:.48rem}
-  .job{margin-bottom:.34rem}
-  .sl{margin-bottom:.3rem}
-  .summary{font-size:.735rem;line-height:1.26;margin-bottom:.3rem}
-  li{font-size:.70rem;line-height:1.23;padding:0 0 0 1rem}
-  .kv{font-size:.71rem;line-height:1.25;margin-bottom:.16rem}
+  .hd{padding:.42in .5in .2in;border-left:none}
+  .mn{padding:.2in .5in .34in}
+  .name{font-size:1.62rem}
+  .sec{margin-bottom:.56rem}
+  .job{margin-bottom:.42rem}
+  .sl{margin-bottom:.38rem}
+  .summary{font-size:.765rem;line-height:1.35;margin-bottom:.38rem}
+  li{font-size:.735rem;line-height:1.33;padding:.03rem 0 .03rem 1.05rem}
+  .kv{font-size:.74rem;line-height:1.34;margin-bottom:.18rem}
   .jt{font-size:.9rem}
-  .proj{padding:.45rem .65rem;margin-bottom:.32rem}
-  .pd{font-size:.71rem;line-height:1.26;margin-bottom:.35rem}
+  .proj{padding:.6rem .8rem;margin-bottom:.45rem}
+  .pd{font-size:.735rem;line-height:1.35;margin-bottom:.38rem}
   .ps,.jc{font-size:.72rem}
   .ft{padding:.5rem .45in;font-size:.68rem}
-  /* NOT .sec: Experience is one tall section, and avoiding a break inside it
-     throws the whole block to page 2 and strands page 1 half empty. */
-  .job,.proj{page-break-inside:avoid}
+  /* NOT .sec and NOT .job. Experience is one tall section and the NAVSUP job
+     alone runs thirteen bullets: refusing a break inside either throws the whole
+     block to page 2 and strands page 1 half empty. Only the small project cards
+     are kept intact. */
+  .proj{page-break-inside:avoid}
   .sl{page-break-after:avoid}
 }
 </style></head><body>
