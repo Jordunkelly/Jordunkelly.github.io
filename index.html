@@ -38,11 +38,64 @@ li::before{content:'\2022\00a0\00a0';color:var(--ac)}
 .pd{font-size:.87rem;color:var(--tx2);margin-bottom:.5rem}
 .ft{border-top:1px solid var(--bd);padding:1rem 1.8rem;font-size:.78rem;color:var(--tx2)}
 @media(max-width:600px){body{padding:1rem .6rem}.hd,.mn{padding-left:1.1rem;padding-right:1.1rem}.name{font-size:1.6rem}}
+
+/* PRINT. The same file is the web page AND the sanitized PDF handed out publicly,
+   so print has to force the light palette (a dark screen theme drinks ink and
+   prints grey) and tighten everything enough to land in two pages. */
+/* Resume + links modal. Print hidden: the same page is rendered to the public PDF. */
+.mbtn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--bd);border-radius:8px;
+      padding:5px 11px;font-size:.74rem;color:var(--tx2);background:none;cursor:pointer;font-family:inherit}
+.mbtn:hover{border-color:var(--ac);color:var(--ac)}
+.ovl{position:fixed;inset:0;background:rgba(0,0,0,.72);display:none;align-items:center;
+     justify-content:center;padding:1.2rem;z-index:50}
+.ovl[data-open="1"]{display:flex}
+.mdl{background:var(--bg);border:1px solid var(--bd);border-radius:var(--r);max-width:430px;width:100%;
+     padding:1.3rem 1.4rem 1.1rem}
+.mdl h3{font-size:.95rem;margin-bottom:.15rem}
+.mdl .sub{font-size:.76rem;color:var(--tx2);margin-bottom:1rem}
+.mrow{display:flex;flex-direction:column;gap:.5rem}
+.mlink{display:flex;align-items:center;gap:10px;border:1px solid var(--bd);border-radius:9px;
+       padding:.6rem .75rem;text-decoration:none;color:var(--tx)}
+.mlink:hover{border-color:var(--ac);background:rgba(29,158,117,.06)}
+.mlink .t{font-size:.82rem}
+.mlink .d{font-size:.7rem;color:var(--tx2);margin-top:1px}
+.mlink svg{flex:0 0 auto;color:var(--ac)}
+.mnote{margin-top:.9rem;font-size:.68rem;color:var(--tx2);line-height:1.45}
+.mclose{margin-top:.9rem;width:100%;border:1px solid var(--bd);border-radius:8px;background:none;
+        color:var(--tx2);padding:.45rem;font-size:.76rem;cursor:pointer;font-family:inherit}
+.mclose:hover{color:var(--tx)}
+@media print{.mbtn,.ovl{display:none !important}}
+
+@media print{
+  :root{--bg:#fff;--bg2:#f7f8f8;--tx:#141414;--tx2:#2b3130;--bd:#dfe3e2;--ac:#157a59}
+  @page{margin:0}
+  body{padding:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .rw{max-width:100%;border:none;border-radius:0}
+  .hd{padding:.3in .42in .14in}
+  .mn{padding:.14in .42in .24in}
+  .name{font-size:1.45rem}
+  .sec{margin-bottom:.48rem}
+  .job{margin-bottom:.34rem}
+  .sl{margin-bottom:.3rem}
+  .summary{font-size:.735rem;line-height:1.26;margin-bottom:.3rem}
+  li{font-size:.70rem;line-height:1.23;padding:0 0 0 1rem}
+  .kv{font-size:.71rem;line-height:1.25;margin-bottom:.16rem}
+  .jt{font-size:.9rem}
+  .proj{padding:.45rem .65rem;margin-bottom:.32rem}
+  .pd{font-size:.71rem;line-height:1.26;margin-bottom:.35rem}
+  .ps,.jc{font-size:.72rem}
+  .ft{padding:.5rem .45in;font-size:.68rem}
+  /* NOT .sec: Experience is one tall section, and avoiding a break inside it
+     throws the whole block to page 2 and strands page 1 half empty. */
+  .job,.proj{page-break-inside:avoid}
+  .sl{page-break-after:avoid}
+}
 </style></head><body>
 <div class="rw"><div class="hd">
 <div class="name">Jordan R. Kelly</div>
 <div class="ttl">Technical Lead &middot; Full Stack, Systems and Architecture</div>
 <div class="cr">Central Pennsylvania &nbsp;|&nbsp; <a href="https://github.com/Jordunkelly">github.com/Jordunkelly</a> &nbsp;|&nbsp; contact via GitHub</div>
+<div style="margin-top:.7rem"><button class="mbtn" onclick="document.getElementById('ovl').dataset.open=1"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v5h5M15 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path></svg>Resume and links</button></div>
 </div><div class="mn">
 <div class="sec"><div class="sl">Profile</div>
 <p class="summary">Principal level full stack engineer with eleven years of professional experience. Technical lead for three production applications and two developers on a mission critical U.S. Navy program. Sole technical authority over the flagship platform, owning architecture, data model, front end, test strategy, and the CI/CD release pipeline. Turns incomplete requirements into working systems, and gets pulled into unfamiliar systems across the portfolio to unblock delivery. Most recent release cycle: 71,000 lines across four months, one production defect at release, resolved in minutes.</p>
@@ -105,4 +158,28 @@ li::before{content:'\2022\00a0\00a0';color:var(--ac)}
 </div>
 </div>
 <div class="sec"><div class="sl">Education</div><div class="kv"><strong>A.S. Web Development</strong>, supplemented by eleven years of professional software engineering experience.</div></div>
-</div><div class="ft">Contact details, clearance status, and employer specifics are deliberately not published here. Available on request through a direct application.</div></div></body></html>
+</div><div class="ft">Contact details, clearance status, and employer specifics are deliberately not published here. Available on request through a direct application.</div></div>
+<div class="ovl" id="ovl" onclick="if(event.target===this)this.dataset.open=0">
+  <div class="mdl" role="dialog" aria-label="Resume and links">
+    <h3>Resume and links</h3>
+    <div class="sub">The public copy. No contact details or clearance status.</div>
+    <div class="mrow">
+      <a class="mlink" href="./Jordan_Kelly_Resume_Public.pdf" download>
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="M7 10l5 5 5-5"></path><path d="M12 15V3"></path></svg>
+        <span><span class="t">Resume, PDF</span><span class="d">Two pages, sanitized for the open web</span></span>
+      </a>
+      <a class="mlink" href="https://github.com/Jordunkelly" target="_blank" rel="noreferrer">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3-.3 6.2-1.5 6.2-6.7A5.2 5.2 0 0 0 19.9 5 4.9 4.9 0 0 0 19.8.9S18.7.6 16 2.4a13.4 13.4 0 0 0-7 0C6.3.6 5.2.9 5.2.9A4.9 4.9 0 0 0 5.1 5a5.2 5.2 0 0 0-1.4 3.8c0 5.2 3.2 6.4 6.2 6.7A3.4 3.4 0 0 0 9 18.1V22"></path></svg>
+        <span><span class="t">GitHub</span><span class="d">Source, projects, and current work</span></span>
+      </a>
+      <a class="mlink" href="https://github.com/Jordunkelly/webworks" target="_blank" rel="noreferrer">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"></path></svg>
+        <span><span class="t">webworks</span><span class="d">Full stack web applications</span></span>
+      </a>
+    </div>
+    <div class="mnote">The full resume, with contact details and clearance status, goes out on a direct application rather than onto a public page.</div>
+    <button class="mclose" onclick="document.getElementById('ovl').dataset.open=0">Close</button>
+  </div>
+</div>
+<script>document.addEventListener('keydown',function(e){if(e.key==='Escape'){var o=document.getElementById('ovl');if(o)o.dataset.open=0;}});</script>
+</body></html>
